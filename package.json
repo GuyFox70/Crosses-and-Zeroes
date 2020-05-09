@@ -1,0 +1,29 @@
+{
+    "name": "study",
+    "version": "1.0.0",
+    "scripts": {
+        "start": "node app.js"
+    },
+    "dependencies": {
+        "body-parser": "^1.19.0",
+        "config": "^3.3.1",
+        "connect-mongo": "^3.2.0",
+        "cookie-parser": "^1.4.5",
+        "express": "^4.17.1",
+        "express-favicon": "^2.0.1",
+        "express-form-data": "^2.0.12",
+        "express-session": "^1.17.0",
+        "gifsicle": "^5.0.0",
+        "http-errors": "^1.7.3",
+        "mongodb": "^3.5.5",
+        "mongoose": "^5.9.7",
+        "pngquant-bin": "^5.0.2",
+        "pug": "^2.0.4",
+        "socket.io": "^2.3.0",
+        "websocket": "^1.0.31"
+    },
+    "devDependencies": {
+        "clean-css": "^4.2.3",
+        "compress-images": "^1.7.8"
+    }
+}
