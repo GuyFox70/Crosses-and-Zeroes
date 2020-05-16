@@ -3,6 +3,19 @@ html(lang="en")
   head
     meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet", href="/stylesheet/normalize.css")
+    link(rel="stylesheet", href="/stylesheet/style.css")
     title Crosses And Zeroes
   body
-    p Here will be game
+    section(class="field")
+      -let i = 1
+      while i <= cell
+        -i++
+        div(class="field-cell")
+    section(class="certain-winner hide")
+      p(class='title-winner') Winner!!!
+      span(class="winner-symbol")
+      a(href="#" class="button-again") again
+  script(src="/javascript/toDoMove.js")
+  script(src="/javascript/findWinner.js")
+  //- script(src="/javascript/restart.js")

@@ -1,0 +1,7 @@
+File from: [C:/Users/Artem/Desktop/node/Crosses-and-Zeroes/public/images/rawImages/background_crosses_and_zeroes.png]
+
+File to: [C:/Users/Artem/Desktop/node/Crosses-and-Zeroes/public/images/compress/background_crosses_and_zeroes.png]
+
+Compression algorithm: [pngquant]
+
+Description: Error: spawn C:\Users\Artem\Desktop\node\Crosses-and-Zeroes\node_modules\pngquant-bin\vendor\pngquant.exe ENOENT

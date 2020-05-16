@@ -2,9 +2,14 @@ const express = require('express');
 const config = require('config');
 const favicon = require('express-favicon');
 const path = require('path');
+const cleanCss = require('./public/stylesheet/cleanCSS');
+const compressImg = require('./public/images/compressImage');
 
 const app = express();
 const http = require('http').createServer(app);
+
+cleanCss();
+// compressImg();
 
 const indexRouter = require('./router/index')
 
