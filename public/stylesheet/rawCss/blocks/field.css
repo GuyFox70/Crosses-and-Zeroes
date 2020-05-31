@@ -40,3 +40,13 @@
 .hide {
   display: none;
 }
+
+.cross {
+  background: url('/images/compress/cross.png') no-repeat;
+  background-size: contain;
+}
+
+.zero {
+  background: url('/images/compress/zero.png') no-repeat center;
+  background-size: contain;
+}

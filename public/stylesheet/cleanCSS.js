@@ -5,6 +5,7 @@ const options = {level: 2};
 
 const arrCss = [
   '/rawCss/core.css',
+  '/rawCss/blocks/start_screen.css',
   '/rawCss/blocks/field.css'
 ];
 

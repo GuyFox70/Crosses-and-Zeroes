@@ -7,6 +7,11 @@ html(lang="en")
     link(rel="stylesheet", href="/stylesheet/style.css")
     title Crosses And Zeroes
   body
+    //- section(class="start-screen")
+    //-   div(class="wrap-gameMode")
+    //-     h1(class="gameName") Crosses and zeroes
+    //-     a(href="#" class="player" data-quantity="1") 1 player
+    //-     a(href="#" class="player" data-quantity="2") 2 players
     section(class="field")
       -let i = 1
       while i <= cell
@@ -17,5 +22,5 @@ html(lang="en")
       span(class="winner-symbol")
       a(href="#" class="button-again") again
   script(src="/javascript/toDoMove.js")
-  script(src="/javascript/findWinner.js")
-  //- script(src="/javascript/restart.js")
+  //- script(src="/javascript/findWinner.js")
+  //- script(src="/javascript/socket.js")
