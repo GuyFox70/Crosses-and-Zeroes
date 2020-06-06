@@ -1,15 +1,14 @@
+let socket = new WebSocket("ws://localhost:2006");
 (() => {
-  let socket = new WebSocket("ws://localhost:2006");
 
   const field = document.querySelector('.field');
   const cells = field.querySelectorAll('.field-cell');
   const buttonAgain = document.querySelector('.button-again');
   const certainWinner = document.querySelector('.certain-winner');
+  const titleWinner = document.querySelector('.title-winner');
 
   const cross = 'x';
   const zero = '0';
-
-  let note;
 
   let gamer;
 
@@ -52,7 +51,7 @@
       cell.classList.remove('cross');
       cell.classList.remove('zero');
     }
-    note = 0;
+    obj.num = 0;
   })
 
   socket.onopen = function(e) {
@@ -78,50 +77,59 @@
         
   };
 
+  function showText (elem, text) {
+    elem.innerHTML = text;
+    certainWinner.classList.remove('hide');
+  }
+
   function getWinner() {
-    if (findWinnerMultidimensional(getHorizontal(cells), 'xxx', '000') ||
-      findWinnerMultidimensional(getVertical(cells), 'xxx', '000') ||
-      findWinnerUnivariate(getDiagonalFromLeftToRight(cells), 'xxx', '000') ||
-      findWinnerUnivariate(getDiagonalFromRightToFromLeft(cells), 'xxx', '000')) {
-
-      certainWinner.classList.remove('hide');
-    }
+    findWinner(getHorizontal(cells), 'xxx', '000');
+    findWinner(getVertical(cells), 'xxx', '000');
+    findWinner(getDiagonalFromLeftToRight(cells), 'xxx', '000');
+    findWinner(getDiagonalFromRightToFromLeft(cells), 'xxx', '000');
   }
 
-  function findWinnerMultidimensional(arr, str1, str2) {
-    for (let i = 0; i < arr.length; i++) {
-      if (arr[i].join('') == str1 || arr[i].join('') == str2) {
-        return true;
+  function findWinner(arr, str1, str2) {
+  
+    if (arr.flag) {
+      for (let i = 0; i < arr.attr.length; i++) {
+        if (arr.attr[i] != null) {
+          if (arr.attr[i].join('') == str1 || arr.attr[i].join('') == str2) {
+            showText (titleWinner, 'Winner' + ' ' + arr.attr[i].join('')[0].toUpperCase() + '!!!');
+          }
+        }
       }
+
+      getHorizontal(cells, true);
+
+    } else {
+
+      if (arr.join('') == str1 || arr.join('') == str2) {
+        showText (titleWinner, 'Winner' + ' ' + arr.join('')[0].toUpperCase() + '!!!');
+      }
+
     }
 
-    getHorizontal(cells, true);
-  }
-
-  function findWinnerUnivariate(arr, str1, str2) {
-    if (arr.join('') == str1 || arr.join('') == str2) {
-      return true;
-    }
   }
 
   function getHorizontal(arr, cancel) {
-    const horizontal = [];
+    const horizontal = {'flag': 1, 'attr': []};
     const basket = [];
 
     for (let i = 0; i < 3; i++) {
-      horizontal[i] = [];
+      horizontal.attr[i] = [];
 
       for (let j = 0; j < arr.length; j++) {
 
-        if (horizontal[i].length < 3 && basket[j] != arr[j]) {
-          horizontal[i].push(arr[j].getAttribute('data-note'));
+        if (horizontal.attr[i].length < 3 && basket[j] != arr[j]) {
+          horizontal.attr[i].push(arr[j].getAttribute('data-note'));
           basket.push(arr[j]);
         }
       }
 
     }
 
-    if (cancel) horizontal.length = 0;
+    if (cancel) horizontal.attr.length = 0;
 
     basket.length = 0;
 
@@ -129,15 +137,15 @@
   }
 
   function getVertical(arr) {
-    const vertical = [];
+    const vertical = {'flag': 1, 'attr': []};
     let count = 0;
 
     for (let i = 0; i < 3; i++) {
-      vertical[i] = [];
+      vertical.attr[i] = [];
       count = i;
 
       for (let j = 0, k = 0; j < 3; j++, count += 3) {
-        vertical[i].push(arr[count].getAttribute('data-note'));
+        vertical.attr[i].push(arr[count].getAttribute('data-note'));
       }
 
     }
@@ -174,7 +182,7 @@
     }
   }
 
-  function getAttribute(arr, gamer) {
+  function getAttribute(arr) {
     let result = [];
 
     for (let elem of arr) {
