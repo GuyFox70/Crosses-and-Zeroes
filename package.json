@@ -19,7 +19,7 @@
         "mongoose": "^5.9.7",
         "nodemon": "^2.0.4",
         "pngquant": "^3.0.0",
-        "pug": "^2.0.4",
+        "pug": "^3.0.1",
         "socket.io": "^2.3.0",
         "websocket": "^1.0.31"
     },
